@@ -19,11 +19,11 @@ from django.urls import path
 from django.shortcuts import render
 
 
-def say_hello(request):
+def moscow_map(request):
     return render(request, "index.html")
 
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", say_hello),
+    path("", moscow_map),
 ]
