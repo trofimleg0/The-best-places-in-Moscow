@@ -19,7 +19,6 @@ from django.urls import path
 
 from moscow_places.views import moscow_map
 
-
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", moscow_map),
