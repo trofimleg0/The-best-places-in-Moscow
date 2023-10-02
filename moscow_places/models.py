@@ -10,3 +10,20 @@ class Place(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        db_table = "Place"
+
+
+class Photo(models.Model):
+    image = models.ImageField(verbose_name="Image")
+    place = models.ForeignKey(
+        Place, related_name="image", on_delete=models.CASCADE
+    )
+
+    def __str__(self):
+        return f"{self.id}. {self.place}"
+
+    class Meta:
+        db_table = "Photo"
+        ordering = ["place"]

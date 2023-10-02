@@ -11,6 +11,7 @@ python = "^3.11"
 django = "^4.2.5"
 ruff = "^0.0.291"
 black = "^23.9.1"
+pillow = "^10.0.1"
 
 [build-system]
 requires = ["poetry-core"]
