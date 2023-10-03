@@ -18,10 +18,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from moscow_places.views import moscow_map
+from moscow_places.views import show_map
 from places import settings
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", moscow_map),
+    path("", show_map),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

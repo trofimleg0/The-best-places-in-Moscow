@@ -126,8 +126,7 @@ MEDIA_ROOT = os.getenv("MEDIA_ROOT", os.path.join(BASE_DIR, "media"))
 STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
 
 MEDIA_URL = os.getenv("MEDIA_URL", "/media/")
-print(MEDIA_ROOT)
-print(MEDIA_URL)
+
 INTERNAL_IPS = ["127.0.0.1"]
 
 # Default primary key field type
