@@ -9,7 +9,7 @@ class Place(models.Model):
     lat = models.FloatField(verbose_name="Latitude")
 
     def __str__(self):
-        return self.title
+        return f"{self.pk}. {self.title}"
 
     class Meta:
         db_table = "Place"
@@ -18,11 +18,11 @@ class Place(models.Model):
 class Photo(models.Model):
     image = models.ImageField(verbose_name="Image")
     place = models.ForeignKey(
-        Place, related_name="image", on_delete=models.CASCADE
+        Place, related_name="photo", on_delete=models.CASCADE
     )
 
     def __str__(self):
-        return f"{self.id}. {self.place}"
+        return f"{self.pk}. {self.place.title}"
 
     class Meta:
         db_table = "Photo"
