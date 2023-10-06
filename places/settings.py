@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "moscow_places.apps.MoscowPlacesConfig",
+    "adminsortable2",
 ]
 
 MIDDLEWARE = [

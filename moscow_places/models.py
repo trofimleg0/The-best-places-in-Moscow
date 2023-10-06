@@ -20,10 +20,15 @@ class Photo(models.Model):
     place = models.ForeignKey(
         Place, related_name="photo", on_delete=models.CASCADE
     )
+    my_order = models.PositiveIntegerField(
+        default=0,
+        blank=False,
+        null=False,
+    )
 
     def __str__(self):
         return f"{self.pk}. {self.place.title}"
 
     class Meta:
         db_table = "Photo"
-        ordering = ["place"]
+        ordering = ["my_order"]
