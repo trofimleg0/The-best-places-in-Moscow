@@ -1,48 +1,35 @@
 from django.http import JsonResponse
 from django.shortcuts import render
+from django.urls import reverse
 
 from moscow_places import services
 
 
 def show_map(request):
-    moscow_places = services.get_moscow_legends_instance()
-    roofs24 = services.get_roofs24_instance()
-    geo_json = {
-        "type": "FeatureCollection",
-        "features": [
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        moscow_places.lon,
-                        moscow_places.lat,
-                    ],
-                },
-                "properties": {
-                    "title": moscow_places.title,
-                    "placeId": "moscow_legends",
-                    "detailsUrl": "./static/places/moscow_legends.json",
-                },
+    places = services.get_all_places()
+
+    features = []
+    for place in places:
+        feature = {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    place.lon,
+                    place.lat,
+                ],
             },
-            {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Point",
-                    "coordinates": [
-                        roofs24.lon,
-                        roofs24.lat,
-                    ],
-                },
-                "properties": {
-                    "title": roofs24.title,
-                    "placeId": "roofs24",
-                    "detailsUrl": "./static/places/roofs24.json",
-                },
+            "properties": {
+                "title": place.title,
+                "placeId": place.pk,
+                "detailsUrl": reverse("place_info", args=[place.pk]),
             },
-        ],
-    }
+        }
+        features.append(feature)
+
+    geo_json = {"type": "FeatureCollection", "features": features}
     context = {"geo_json": geo_json}
+
     return render(request, "index.html", context=context)
 
 
