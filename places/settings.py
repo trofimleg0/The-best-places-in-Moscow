@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "moscow_places.apps.MoscowPlacesConfig",
     "adminsortable2",
+    "tinymce",
 ]
 
 MIDDLEWARE = [
