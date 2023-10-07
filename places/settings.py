@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 
+from environs import Env
+
+env = Env()
+env.read_env()  # read .env file, if it exists
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,12 +26,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-%(q07ro9!3&hjbb83(p_vint%)t#ir)h4gg#kq=)737rkrgx4c"  # noqa: E501
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool("DEBUG", False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -119,15 +124,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = os.getenv("STATIC_URL", "/static/")
+STATIC_URL = env.str("STATIC_URL", "/static/")
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
-MEDIA_ROOT = os.getenv("MEDIA_ROOT", os.path.join(BASE_DIR, "media"))
+MEDIA_ROOT = env.str("MEDIA_ROOT", os.path.join(BASE_DIR, "media"))
 
 STATIC_ROOT = os.path.join(BASE_DIR, "collected_static")
 
-MEDIA_URL = os.getenv("MEDIA_URL", "/media/")
+MEDIA_URL = env.str("MEDIA_URL", "/media/")
 
 INTERNAL_IPS = ["127.0.0.1"]
 
