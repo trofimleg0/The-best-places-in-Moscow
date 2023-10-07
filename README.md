@@ -6,12 +6,13 @@ Site about the most interesting places in Moscow
 
 You will need Python version 3 to run the site.
 
-Download the code from GitHub. Install the dependencies:
-
+Download the code from GitHub. Install the package manager:
 
 ```sh
-pip install poetry
+pip3 install poetry
 ```
+
+Install the dependencies:
 
 ```sh
 poetry install
