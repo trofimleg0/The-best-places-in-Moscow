@@ -14,7 +14,7 @@ class Place(models.Model):
 
     class Meta:
         db_table = "Place"
-
+        unique_together = ["lon", "lat"]
 
 class Photo(models.Model):
     image = models.ImageField(verbose_name="Image")
